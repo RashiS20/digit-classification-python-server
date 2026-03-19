@@ -15,6 +15,7 @@ flatbuffers==25.12.19
 gast==0.7.0
 google-pasta==0.2.0
 grpcio==1.78.0
+gunicorn==25.1.0
 h11==0.16.0
 h5py==3.14.0
 idna==3.11
@@ -40,7 +41,7 @@ requests==2.32.5
 rich==14.3.3
 six==1.17.0
 starlette==0.52.1
-tensorflow
+tensorflow_cpu==2.21.0
 termcolor==3.3.0
 typing-inspection==0.4.2
 typing_extensions==4.15.0
