@@ -28,7 +28,7 @@ def home():
 def predict():
     try:
         data = request.json
-        image_data = data
+        image_data = base64.b64decode(data.split(",")[1])
 
         processed = preprocess_image(image_data)
         prediction = model.predict(processed)
