@@ -13,12 +13,6 @@ CORS(app)
 # Load model
 model = tf.keras.models.load_model("mnist_model.h5")
 
-def preprocess_image(image_data):
-    image = Image.open(io.BytesIO(image_data)).convert('L')
-    image = image.resize((28, 28))
-    image = np.array(image) / 255.0
-    image = image.reshape(1, 28, 28, 1)
-    return image
 
 @app.route("/")
 def home():
@@ -27,11 +21,10 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        data = request.json
-        image_data = base64.b64decode(data.split(",")[1])
 
-        processed = preprocess_image(image_data)
-        prediction = model.predict(processed)
+        data = request.json
+        image = np.array(data).reshape(1, 28, 28, 1) / 255.0
+        prediction = model.predict(image)
 
         return jsonify({
             "prediction": int(np.argmax(prediction))
