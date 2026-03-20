@@ -27,8 +27,8 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        data = request.json["image"]
-        image_data = base64.b64decode(data.split(",")[1])
+        data = request.json
+        image_data = data
 
         processed = preprocess_image(image_data)
         prediction = model.predict(processed)
